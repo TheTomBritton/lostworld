@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
 project(lostworld C)
 
+# The board library has no optimisation flags of its own: without a build
+# type its rasteriser compiles at -O0, several times slower.
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
